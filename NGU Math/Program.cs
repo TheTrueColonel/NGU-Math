@@ -58,7 +58,6 @@ namespace NGU_Math {
 
             while (remainingLimit > 10) {
                 remainingLimit = (int) Math.Round(remainingLimit * 0.9f) - 1;
-                Console.WriteLine(remainingLimit);
                 iterations++;
             }
             
