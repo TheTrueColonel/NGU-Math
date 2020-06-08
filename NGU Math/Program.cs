@@ -56,8 +56,9 @@ namespace NGU_Math {
             var remainingLimit = cappedLimit;
             var iterations = 0;
 
-            while (remainingLimit > 10) {
-                remainingLimit = (int) Math.Floor(remainingLimit * 0.9f);
+            while (remainingLimit > 1) {
+                remainingLimit = (int) Math.Round(remainingLimit * 0.9f) - 1;
+                Console.WriteLine(remainingLimit);
                 iterations++;
             }
             
@@ -69,6 +70,6 @@ namespace NGU_Math {
         /// </summary>
         /// <param name="cappedLimit"></param>
         private static int CalculateNextIteration (int cappedLimit) => 
-            (int) Math.Floor(cappedLimit * 0.9f);
+            (int) Math.Round(cappedLimit * 0.9f) - 1;
     }
 }
