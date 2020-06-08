@@ -4,23 +4,39 @@ using NGU_Math.Extensions;
 namespace NGU_Math {
     public static class Program {
         private static int _cappedLimit;
+        private static int _totalIterations;
+        private static int _nextIteration;
         
         private static void Main () {
             RunIntro();
-            
-            Console.WriteLine("Please enter the starting capped energy limit:");
 
-            _cappedLimit = ConsoleExtended.ReadNumericalInput();
-            
-            Console.WriteLine();
+            CalculationInstance();
+        }
 
-            var totalIterations = CalculateIterations(_cappedLimit);
-            var nextIteration = CalculateNextIteration(_cappedLimit);
-            
-            Console.WriteLine($"Iterations (until 10 or less): {totalIterations}\n" +
-                              $"Next Iteration: {nextIteration}\n" +
-                              "Press Enter to exit...");
-            Console.Read();
+        private static void CalculationInstance () {
+            while (true) {
+                Console.WriteLine("Please enter the starting capped energy limit:");
+
+                _cappedLimit = ConsoleExtended.ReadNumericalInput();
+
+                Console.WriteLine();
+
+                _totalIterations = CalculateIterations(_cappedLimit);
+                _nextIteration = CalculateNextIteration(_cappedLimit);
+
+                Console.WriteLine($"Iterations (until 10 or less): {_totalIterations}\n" + $"Next Iteration: {_nextIteration}");
+
+                Console.WriteLine("Would you like to calculate another skill cap? Y/N");
+
+                var key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.Y) {
+                    Console.Clear();
+                    continue;
+                }
+
+                break;
+            }
         }
 
         private static void RunIntro () {
